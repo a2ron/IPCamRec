@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #load the enviroment vars
-source "env.sh"
+source $(dirname $0)"/env.sh"
 
 #fetch the concat files list to join video parts
 regex=".*\.ffconcat$"

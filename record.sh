@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #load the enviroment vars
-source "env.sh"
+source $(dirname $0)"/env.sh"
 
 #neverending bucle
 while [ 1 == 1 ]; do
