@@ -1,1 +1,4 @@
 env.sh
+run.sh
+*.ignore
+.DS_Store
