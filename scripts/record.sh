@@ -10,11 +10,14 @@ while [ 1 == 1 ]; do
   #NOTE: there is a limit time to avoid blocks if the process fail
   $FFMEPG $LOG -y \
   -i $URL -map 0 -c copy \
-  -t 1800 \
-  -f segment -segment_time 5 \
+  -t 9000 \
+  -f segment -segment_time 1 \
   -segment_list $RECORDS_PATH/$name.ffconcat \
+  -b 1000000 \
+  -vcodec libx264 \
+  -filter:v "setpts=4.2*PTS" \
   $RECORDS_PATH/$name"-%04d.mp4"
 
-  sleep 1
+  sleep 0.5
 
 done

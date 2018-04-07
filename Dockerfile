@@ -24,7 +24,7 @@ ENV S3_BUCKET ""
 RUN crontab -l > mycron
 RUN echo "*/15 * * * * sh ${WD}/scripts/sync.sh >> ${WD}/log/sync.log 2>> ${WD}/log/sync.error.log" >> mycron
 RUN echo "*/30 * * * * sh ${WD}/scripts/concat.sh >> ${WD}/log/concat.log 2>> ${WD}/log/concat.error.log" >> mycron
-RUN echo "*/5 * * * * sh ${WD}/scripts/keepLatest.sh ${RECORDS_PATH} 400 >> ${WD}/log/keepLatest.log 2>> ${WD}/log/keepLatest.error.log" >> mycron
+#TODO RUN echo "*/20 * * * * sh ${WD}/scripts/keepLatest.sh ${RECORDS_PATH} 400 >> ${WD}/log/keepLatest.log 2>> ${WD}/log/keepLatest.error.log" >> mycron
 RUN crontab mycron
 RUN rm mycron
 

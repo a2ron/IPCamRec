@@ -1,7 +1,8 @@
 #!/bin/bash
 
 #fetch the concat files list to join video parts
-regex=".*\.ffconcat$"
+concat_suffix="ffconcat"
+regex=".*\.$concat_suffix$"
 files=$(ls $RECORDS_PATH | grep $regex)
 
 #foreach list of video parts to join
@@ -10,18 +11,17 @@ i=0
 for f in $files
 do
   i=$((i + 1))
+  concat_file=$RECORDS_PATH/$f
+  video_name=$(echo $f | sed -e "s/.$concat_suffix//g")
 
   #join the video parts
   $FFMEPG $LOG -y -f concat \
-  -i $RECORDS_PATH/$f \
-  -c copy $DIST/$f.mp4
+  -i $concat_file \
+  -c copy $DIST/$video_name.mp4
 
-  #check the list as "done", except the last one because it could be in progress yet
+  #remove the parts, except the last one because it could be in progress yet
   if [ "$i" -lt "$num"   ]; then
-    mv $RECORDS_PATH/$f $RECORDS_PATH/$f".done"
+    rm $RECORDS_PATH/$video_name*
   fi
 
 done
-
-aws s3 sync $DIST s3://$(echo $S3_BUCKET/$DIST | sed -e "s/\/\//\//g")
-aws s3 sync $RECORDS_PATH s3://$(echo $S3_BUCKET/$RECORDS_PATH | sed -e "s/\/\//\//g")
