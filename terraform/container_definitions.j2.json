@@ -34,7 +34,7 @@
       "memory": 300,
       "memoryReservation": null,
       "volumesFrom": [],
-      "image": "437487814952.dkr.ecr.eu-west-1.amazonaws.com/ip-cam-rec:0.2.0",
+      "image": "437487814952.dkr.ecr.eu-west-1.amazonaws.com/ip-cam-rec:${DOCKER_IMAGE_TAG}",
       "disableNetworking": null,
       "healthCheck": null,
       "essential": true,

@@ -10,6 +10,7 @@ data "template_file" "container_definitions" {
     AWS_SECRET_ACCESS_KEY = "${var.AWS_SECRET_ACCESS_KEY}"
     URL                   = "${var.URL}"
     S3_BUCKET             = "${var.S3_BUCKET}"
+    DOCKER_IMAGE_TAG      = "${var.DOCKER_IMAGE_TAG}"
   }
 }
 
