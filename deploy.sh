@@ -1,3 +1,4 @@
+
 #!/bin/bash
 # Deploy on AWS: ./deploy.sh <image-version> -> ./run.sh 0.7.0
 # Run locally: ./deploy.sh local
@@ -28,7 +29,6 @@ if  [ "$1" == "local" ] ; then
     
 else
     NEW_IMAGE_VERSION=$1
-    DOCKER_REPO="$DOCKER_REP"
     docker tag test/test $DOCKER_REPO:$NEW_IMAGE_VERSION;
     $(aws ecr get-login --no-include-email)
     docker push $DOCKER_REPO:$NEW_IMAGE_VERSION;
