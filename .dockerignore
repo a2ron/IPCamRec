@@ -1,0 +1,8 @@
+**/node_modules
+**/.terraform
+**/tfplan
+**/*.tfstate
+**/*.tfstate.*
+**/provider.tf
+dist.bk/**
+.git

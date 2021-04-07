@@ -1,5 +1,9 @@
 env.sh
-run.sh
 *.ignore
 *.ignore.*
 .DS_Store
+node_modules
+parts/*.mp4
+parts/*.ffconcat
+dist/*.mp4
+log/*

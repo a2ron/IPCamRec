@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #fetch the concat files list to join video parts
 concat_suffix="ffconcat"
@@ -15,13 +15,10 @@ do
   video_name=$(echo $f | sed -e "s/.$concat_suffix//g")
 
   #join the video parts
-  $FFMEPG $LOG -y -f concat \
+  $FFMEPG -loglevel $LOG_LEVEL -y -f concat \
   -i $concat_file \
-  -c copy $DIST/$video_name.mp4
+  -c copy $DIST/$video_name.$REC_KEY.mp4
 
-  #remove the parts, except the last one because it could be in progress yet
-  if [ "$i" -lt "$num"   ]; then
-    rm $RECORDS_PATH/$video_name*
-  fi
+  rm $RECORDS_PATH/$video_name*
 
 done
